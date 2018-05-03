@@ -1,0 +1,11 @@
+<header (componentSelected)="toggleComponents($event)">
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <recipe-book *ngIf='selectedComponent == "recipes"'></recipe-book>
+            <shopping-list *ngIf='selectedComponent == "shoppingList"'></shopping-list>
+        </div>
+    </div>
+    
+</div>
