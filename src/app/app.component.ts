@@ -7,12 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  selectedComponent: string;
-
-  constructor() {
-    this.selectedComponent = 'recipes';
-  }
-  public toggleComponents(selected: string) {
-    this.selectedComponent = selected;
-  }
 }

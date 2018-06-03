@@ -8,6 +8,7 @@ export class RecipeService {
   public recipeSelected = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe(
+      0,
       'A test recipe 1 ',
       'Test',
       'https://www.bbcgoodfood.com/sites/default' +
@@ -17,6 +18,7 @@ export class RecipeService {
       new Ingredient('Cucumber', 2)
     ]),
     new Recipe(
+      1,
       'A test recipe 2',
       'Test',
       'https://www.bbcgoodfood.com/sites/default/files' +
@@ -36,5 +38,9 @@ export class RecipeService {
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);
+  }
+
+  getRecipeById(id: number) {
+    return this.recipes.find(r => r.id === id);
   }
 }
