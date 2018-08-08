@@ -12,7 +12,7 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="/shopping-list" style="cursor: pointer;">Shopping list</a>
             </li>
-            
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" appDropdown>
@@ -21,10 +21,10 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a style="cursor: pointer;">Save data</a>
+                        <a style="cursor: pointer;" (click)="saveDataToDatabase()">Save data</a>
                     </li>
                     <li>
-                        <a style="cursor: pointer;">Fetch data</a>
+                        <a style="cursor: pointer;" (click)="fetchDataFromDatabase()">Fetch data</a>
                     </li>
                 </ul>
             </li>
