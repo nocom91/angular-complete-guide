@@ -5,6 +5,7 @@ import { RecipeBookComponent } from './recipe-book/recipe-book.component';
 import { RecipeStartComponent } from './recipe-book/recipe-start/recipe-start.component';
 import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const appRoutes: Routes = [
     {
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
             { path: ':id', component: RecipeDetailComponent },
             { path: ':id/edit', component: RecipeEditComponent },
         ]
+    },
+    {
+      path: 'signup',
+      component: SignupComponent
     }
 ];
 
