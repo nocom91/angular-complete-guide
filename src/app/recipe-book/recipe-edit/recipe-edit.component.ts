@@ -11,7 +11,7 @@ import { RecipeService } from '../recipe.service';
 export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
-  recipeForm: FormGroup;
+  public recipeForm: FormGroup;
 
   constructor( private route: ActivatedRoute,
   private recipeService: RecipeService,
@@ -27,7 +27,7 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  public onSubmit() {    
+  public onSubmit() {
     if(this.editMode) {
       this.recipeService.updateRecipe(this.id, this.recipeForm.value)
     } else {
@@ -50,6 +50,10 @@ export class RecipeEditComponent implements OnInit {
 
   public onDeleteIngredient(index: number){
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+
+  public get Ingredients () {
+    return <FormArray>this.recipeForm.get('ingredients');
   }
 
   private initForm() {

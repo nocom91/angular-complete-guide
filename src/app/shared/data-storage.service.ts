@@ -4,6 +4,7 @@ import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
 import { RecipeService } from '../recipe-book/recipe.service';
+import { AuthService } from '../auth/auth.service';
 
 import { Recipe } from './models/recipe.model';
 
@@ -11,18 +12,20 @@ import { Recipe } from './models/recipe.model';
 export class DataStorageService {
 
   constructor(private http: Http,
-    private _recipeService: RecipeService) { }
+    private _recipeService: RecipeService,
+    private auth: AuthService) { }
 
   storeRecipes() {
-
+    const token = this.auth.getToken();
     const recipes = this._recipeService.getRecipes();
 
-    return this.http.put('https://ng-recipe-book-36792.firebaseio.com/recipes.json', recipes);
+    return this.http.put('https://ng-recipe-book-36792.firebaseio.com/recipes.json?auth=' + token, recipes);
 
   }
 
   fetchRecipes() {
-    return this.http.get('https://ng-recipe-book-36792.firebaseio.com/recipes.json')
+    const token = this.auth.getToken();
+    return this.http.get('https://ng-recipe-book-36792.firebaseio.com/recipes.json?auth=' + token)
     .map((response: Response) => {
       const recipes: Recipe[] = response.json();
 
