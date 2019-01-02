@@ -1,4 +1,4 @@
-import { Response } from '@angular/http';
+//import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   public saveDataToDatabase() {
     this.dataServerService.storeRecipes()
-      .subscribe((data: Response) => console.log(data));
+      .subscribe((data) => console.log(data));
   }
 
   public fetchDataFromDatabase() {
