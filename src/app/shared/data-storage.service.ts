@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import 'rxjs/Rx';
@@ -29,8 +31,8 @@ export class DataStorageService {
       {
         observe: 'body',
         responseType: 'json'
-      })
-      .map((recipes) => {
+      }).pipe(
+      map((recipes) => {
         for (const recipe of recipes) {
           if (!recipe['ingredients']) {
             recipe['ingredients'] = [];
@@ -39,7 +41,7 @@ export class DataStorageService {
         return recipes;
 
 
-      })
+      }))
       .subscribe((recipes: Recipe[]) => {
         this._recipeService.setRecipes(recipes);
       });
