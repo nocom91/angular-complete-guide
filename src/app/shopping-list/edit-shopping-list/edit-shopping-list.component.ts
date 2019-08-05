@@ -15,7 +15,7 @@ export class EditShoppingListComponent implements OnInit, OnDestroy {
   editMode = false;
   editedItemIndex: number;
   editedItem: Ingredient;
-  @ViewChild('f') slForm: NgForm;
+  @ViewChild('f', {static: true}) slForm: NgForm;
 
   constructor(private slService: ShoppingListService) {
   }
