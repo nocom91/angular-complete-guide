@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducers';
+import { shoppingListReducer } from '../app/shopping-list/store/shopping-list.reducer';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';

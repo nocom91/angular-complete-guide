@@ -10,11 +10,11 @@ import { ShoppingListService } from './shopping-list.service';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  shoppingListState: Observable<{
+  ingredients: Observable<{
     ingredients: Ingredient[]
   }>;
-  private subscription: Subscription;
-  constructor(private shoppingListService: ShoppingListService,
+  constructor(
+    private shoppingListService: ShoppingListService,
     private store: Store<{
       shoppingList: {
         ingredients: Ingredient[]
@@ -22,18 +22,13 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     }>) { }
 
   ngOnInit() {
-    this.shoppingListState = this.store.select('shoppingList');
-    // this.subscription = this.shoppingListService.ingredientsChanged.subscribe(
-    //   (ingredients: Ingredient[]) => {
-    //     this.ingredients = ingredients;
-    //   }
-    // );
+    this.ingredients = this.store.select('shoppingList');
+    
   }
   onEditItem(index: number) {
     this.shoppingListService.startedEditing.next(index);
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }
