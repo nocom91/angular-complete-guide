@@ -7,7 +7,6 @@ import { AppRoutingModule } from './../app-routing.module';
 import { AuthService } from '../auth/auth.service';
 import { DataStorageService } from '../shared/data-storage.service';
 import { RecipeService } from '../recipe-book/recipe.service';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -28,7 +27,6 @@ import { LogginInterceptor } from './../shared/logging.interceptor';
     HeaderComponent
   ],
   providers: [
-    ShoppingListService,
     RecipeService,
     DataStorageService,
     AuthService,
