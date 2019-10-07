@@ -30,7 +30,8 @@
         *ngIf="authService.isAuthenticated()">Logout</a>
       </li>
 
-      <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+      <!-- *ngIf="authService.isAuthenticated()" -->
+      <li class="dropdown" appDropdown >
         <a class="dropdown-toggle" role="button">
           Manage
         </a>

@@ -20,12 +20,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public saveDataToDatabase() {
-    this.dataServerService.storeRecipes()
-      .subscribe((data) => console.log(data));
+    this.dataServerService.storeRecipes();
   }
 
   public fetchDataFromDatabase() {
-    this.dataServerService.fetchRecipes();
+    this.dataServerService.fetchRecipes().subscribe();
   }
 
   onLogout() {

@@ -9,29 +9,30 @@ import * as fromShoppingList from './../shopping-list/store/shopping-list.reduce
 @Injectable()
 export class RecipeService {
  recipesChanged = new Subject<Recipe[]>();
-
-  private recipes: Recipe[] = [
-    new Recipe(
-      0,
-      'A test recipe 1 ',
-      'Test',
-      'https://www.bbcgoodfood.com/sites/default' +
-      '/files/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg',
-    [
-      new Ingredient('Cheese', 1),
-      new Ingredient('Cucumber', 2)
-    ]),
-    new Recipe(
-      1,
-      'A test recipe 2',
-      'Test',
-      'https://www.bbcgoodfood.com/sites/default/files' +
-      '/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg',
-    [
-      new Ingredient('Tomatos', 3),
-      new Ingredient('Ham', 1)
-    ])
-  ];
+ 
+ private recipes: Recipe[] = [];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     0,
+  //     'A test recipe 1 ',
+  //     'Test',
+  //     'https://www.bbcgoodfood.com/sites/default' +
+  //     '/files/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg',
+  //   [
+  //     new Ingredient('Cheese', 1),
+  //     new Ingredient('Cucumber', 2)
+  //   ]),
+  //   new Recipe(
+  //     1,
+  //     'A test recipe 2',
+  //     'Test',
+  //     'https://www.bbcgoodfood.com/sites/default/files' +
+  //     '/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg',
+  //   [
+  //     new Ingredient('Tomatos', 3),
+  //     new Ingredient('Ham', 1)
+  //   ])
+  // ];
 
   constructor(
     private store: Store<fromShoppingList.AppState>) {

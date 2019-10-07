@@ -1,5 +1,5 @@
 
-import {map} from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import 'rxjs/Rx';
@@ -9,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
 
 import { Recipe } from './models/recipe.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DataStorageService {
 
   constructor(private httpClient: HttpClient,
@@ -18,32 +18,33 @@ export class DataStorageService {
 
   storeRecipes() {
     const recipes = this._recipeService.getRecipes();
-    const req = new HttpRequest('PUT', 'https://ng-recipe-book-36792.firebaseio.com/recipes.json', recipes,
-      {
-        reportProgress: true
-      });
+    // const req = new HttpRequest('PUT', 'https://ng-recipe-book-36792.firebaseio.com/recipes.json', recipes,
+    //   {
+    //     reportProgress: true
+    //   });
 
-    return this.httpClient.request(req);
+    // return this.httpClient.request(req);
+    this.httpClient.put('https://ng-recipe-book-36792.firebaseio.com/recipes.json', recipes)
+    .subscribe((response) => {
+      console.log(response);
+    });
   }
 
   fetchRecipes() {
-    this.httpClient.get<Recipe[]>('https://ng-recipe-book-36792.firebaseio.com/recipes.json',
+    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-36792.firebaseio.com/recipes.json',
       {
         observe: 'body',
         responseType: 'json'
       }).pipe(
-      map((recipes) => {
-        for (const recipe of recipes) {
-          if (!recipe['ingredients']) {
-            recipe['ingredients'] = [];
-          }
-        }
-        return recipes;
-
-
-      }))
-      .subscribe((recipes: Recipe[]) => {
-        this._recipeService.setRecipes(recipes);
-      });
+        map((recipes) => {
+          return recipes.map((recipe) => {
+            return {...recipe,
+            ingredients: recipe.ingredients ? recipe.ingredients: []
+          };
+          });
+        }),
+        tap(recipes => {
+          this._recipeService.setRecipes(recipes);
+        }));
   }
 }
