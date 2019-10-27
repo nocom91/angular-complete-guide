@@ -9,13 +9,16 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth_old/auth.module';
 
 import { AppComponent } from './app.component';
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,8 @@ import { AppComponent } from './app.component';
     ShoppingListModule,
     AuthModule,
     SharedModule,
+    FormsModule,
+    //ReactiveFormsModule,
     StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   bootstrap: [AppComponent]

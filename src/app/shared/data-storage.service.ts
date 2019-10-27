@@ -5,7 +5,7 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 import 'rxjs/Rx';
 
 import { RecipeService } from '../recipe-book/recipe.service';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../auth_old/auth.service';
 
 import { Recipe } from './models/recipe.model';
 
