@@ -1,11 +1,11 @@
 
-import { map, tap } from 'rxjs/operators';
+import { map, tap, take, exhaustMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient,  HttpParams } from '@angular/common/http';
 import 'rxjs/Rx';
 
 import { RecipeService } from '../recipe-book/recipe.service';
-import { AuthService } from '../auth_old/auth.service';
+import { AuthService } from '../auth/auth.service';
 
 import { Recipe } from './models/recipe.model';
 
@@ -31,20 +31,19 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-36792.firebaseio.com/recipes.json',
-      {
-        observe: 'body',
-        responseType: 'json'
-      }).pipe(
-        map((recipes) => {
-          return recipes.map((recipe) => {
-            return {...recipe,
-            ingredients: recipe.ingredients ? recipe.ingredients: []
+   
+    return this.httpClient.get<Recipe[]>('https://ng-recipe-book-36792.firebaseio.com/recipes.json').pipe(
+      map((recipes) => {
+        return recipes.map((recipe) => {
+          return {
+            ...recipe,
+            ingredients: recipe.ingredients ? recipe.ingredients : []
           };
-          });
-        }),
-        tap(recipes => {
-          this._recipeService.setRecipes(recipes);
-        }));
+        });
+      }),
+      tap(recipes => {
+        this._recipeService.setRecipes(recipes);
+      }));
+    
   }
 }
