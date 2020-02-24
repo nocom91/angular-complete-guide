@@ -4,6 +4,7 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'recipes',
+    canActivate: [AuthGuard],
     loadChildren: './recipe-book/recipes.module#RecipesModule'
   },
   {
