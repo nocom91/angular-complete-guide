@@ -13,14 +13,18 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoadingSpinnerComponent } from '../app/shared/loading-spinner/spinner.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.serice';
+import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    AlertComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.serice';
     StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AlertComponent]
 })
 export class AppModule { }
