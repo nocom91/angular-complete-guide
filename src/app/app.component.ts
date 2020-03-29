@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as firebase from 'firebase';
-import { AuthService } from './auth/auth.service';
+import * as fromApp from './store/app.reducer';
+import * as authActions from './auth/store/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,13 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent implements OnInit {
   title = 'Recipe Book';
 
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
     firebase.initializeApp({
       apiKey: 'AIzaSyArbEqi6C27HBZJuZ9F6CKfsbvQdiWi3zA',
       authDomain: 'ng-recipe-book-36792.firebaseapp.com'
     });
-    this.authService.autoLogin();
+    this.store.dispatch(new authActions.AutoLogin());
   }
 }
