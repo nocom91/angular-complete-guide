@@ -13,7 +13,7 @@ const recipesRoutes: Routes = [
         path: '',
         component: RecipeBookComponent,
         children: [
-            { path: '', component: RecipeStartComponent },
+            { path: '', component: RecipeStartComponent, resolve: [RecipesResolverService] },
             { path: 'new', component: RecipeEditComponent, canActivate: [] },
             { path: ':id', component: RecipeDetailComponent,resolve: [RecipesResolverService] },
             { path: ':id/edit', component: RecipeEditComponent, canActivate: [],resolve: [RecipesResolverService] },

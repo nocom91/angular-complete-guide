@@ -4,8 +4,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './../shared/shared.module';
 import { AppRoutingModule } from './../app-routing.module';
 
-import { RecipeService } from '../recipe-book/recipe.service';
-
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from '../shared/auth.interceptor';
@@ -25,7 +23,6 @@ import { LogginInterceptor } from './../shared/logging.interceptor';
     HeaderComponent
   ],
   providers: [
-    RecipeService
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: AuthInterceptor,
