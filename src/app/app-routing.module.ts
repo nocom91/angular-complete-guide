@@ -17,10 +17,6 @@ const appRoutes: Routes = [
     loadChildren: './recipe-book/recipes.module#RecipesModule'
   },
   {
-    path: 'shopping-list',
-    component: ShoppingListComponent
-  },
-  {
     path: 'auth',
     component: AuthComponent
   }

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 import { ShoppingListComponent } from './shopping-list.component';
 import { EditShoppingListComponent } from './edit-shopping-list/edit-shopping-list.component';
-
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,9 +12,13 @@ import { EditShoppingListComponent } from './edit-shopping-list/edit-shopping-li
     EditShoppingListComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forChild([{
+      path: 'shopping-list',
+      component: ShoppingListComponent
+    }])
   ]
 })
 export class ShoppingListModule{}
