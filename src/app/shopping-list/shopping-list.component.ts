@@ -19,8 +19,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.ingredients = this.store.select('shoppingList');
-    
+    this.ingredients = this.store.select('shoppingList');    
   }
   onEditItem(index: number) {
     this.store.dispatch(new shoppingListActions.StartEdit(index));
