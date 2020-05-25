@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Actions, ofType, Effect } from '@ngrx/effects';
 import { switchMap, catchError, map, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, from } from 'rxjs';
 import * as authActions from './auth.actions';
 import { User } from '../user.model';
 import { AuthService } from '../auth.service';
+import { environment } from '../../../environments/environment';
 
 export interface AuthResponseData {
     kind: string,
@@ -57,7 +58,7 @@ export class AuthEffects {
         ofType(authActions.SIGNUP_START),
         switchMap((signupAction: authActions.SignupStart) => {
             return this.http.post<AuthResponseData>(
-                'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyArbEqi6C27HBZJuZ9F6CKfsbvQdiWi3zA',
+                'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
                 {
                     email: signupAction.payload.login,
                     password: signupAction.payload.password,
@@ -76,7 +77,7 @@ export class AuthEffects {
         ofType(authActions.LOGIN_START),
         switchMap((authData: authActions.LoginStart) => {
             return this.http.post<AuthResponseData>(
-                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyArbEqi6C27HBZJuZ9F6CKfsbvQdiWi3zA',
+                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,
                 {
                     email: authData.payload.login,
                     password: authData.payload.password,
